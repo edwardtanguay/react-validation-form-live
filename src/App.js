@@ -16,6 +16,15 @@ function App() {
 		setPhone(_phone);
 	}
 
+	const handleButton = (e) => {
+		e.preventDefault();
+		setPayload(prev => ({
+			...prev,
+			name,
+			phone
+		}));
+	}
+
 	return (
 		<div className="App">
 			<form>
@@ -35,11 +44,16 @@ function App() {
 					<div className="note">e.g. 555-333-2222</div>
 
 					<div className="buttonRow">
-						<button>Register</button>
+						<button onClick={handleButton}>Register</button>
 					</div>
 
 				</fieldset>
 			</form>
+			{Object.keys(payload).length !== 0 && (
+				<pre>
+					payload: {JSON.stringify(payload, null, 2)}
+				</pre>
+			)}
 		</div>
 	);
 }
