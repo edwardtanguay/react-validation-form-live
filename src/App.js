@@ -1,10 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.scss';
 
 function App() {
 	const [name, setName] = useState('');
 	const [phone, setPhone] = useState('');
 	const [payload, setPayload] = useState({});
+
+	const clearPayload = () => {
+		if (Object.keys(payload).length !== 0) {
+			setPayload((prev) => ({}));
+			console.log(name + phone);
+		}
+	};
+
+	useEffect(() => {
+		clearPayload();
+	}, [name, phone]);
 
 	const handleName = (e) => {
 		let _name = e.target.value;
